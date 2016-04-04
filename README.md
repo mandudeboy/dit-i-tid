@@ -6,11 +6,11 @@ Dit-i-tiD API and Backend
 ## Get all trips
 GET /api/trip
 
-## Get one trips
+## Get one trip
 GET /api/trip/{id}
 
-## create trip
+## Create a trip
 POST /api/trip
 
-## update trip
+## Update a trip
 PUT /api/trip/{id}
