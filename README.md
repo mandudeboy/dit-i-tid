@@ -1,18 +1,16 @@
 # dit-i-tid
 Dit-i-tiD API and Backend
 
-API methods:
+# API methods:
 
-## API methods:
-
-#Get all trips
+## Get all trips
 GET /api/trip
 
-#Get one trips
+## Get one trips
 GET /api/trip/{id}
 
-#create trip
+## create trip
 POST /api/trip
 
-#update trip
+## update trip
 PUT /api/trip/{id}
