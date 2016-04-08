@@ -6,15 +6,15 @@ import se.haja.dititid.ws.model.Trip;
 
 public interface TripService {
 	
-	Collection<Trip> getAllTrips();
+	Collection<Trip> findAll();
 	
 	Trip createTrip(Trip trip);
 
-	Trip getTrip(Long id);
+	Trip find(Long id);
 	
-	Trip updateTrip(Trip trip);
+	Trip update(Trip trip);
 	
-	void deleteTrip(Long id);
+	void delete(Long id);
 	
 	void evictCache();
 }

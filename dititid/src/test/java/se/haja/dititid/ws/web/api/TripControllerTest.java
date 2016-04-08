@@ -127,7 +127,7 @@ public class TripControllerTest extends AbstractControllerTest {
 	public void testUpdateTrip() throws Exception {
 		
 		Long id = 1l;
-		Trip trip = tripService.getTrip(id);
+		Trip trip = tripService.find(id);
 		trip.setFromAddress(FROM_ADDRESS);
 		trip.setLeaveEarliest(ARRIVE_LATEST);
 		trip.setToAddress(TO_ADDRESS);
@@ -170,7 +170,7 @@ public class TripControllerTest extends AbstractControllerTest {
 		assertEquals(204, status);
 		assertTrue(content.trim().length() == 0);
 		
-		assertNull(tripService.getTrip(id));
+		assertNull(tripService.find(id));
 		
 	}
 

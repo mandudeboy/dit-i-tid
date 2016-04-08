@@ -17,7 +17,7 @@ import se.haja.dititid.ws.model.Trip;
 import se.haja.dititid.ws.service.TripService;
 
 @RestController
-public class TripController {
+public class TripController extends BaseController {
 
 	@Autowired
 	private TripService tripService;
@@ -35,7 +35,7 @@ public class TripController {
 			method = RequestMethod.GET,
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Collection<Trip>> retrieveAllTrip() {
-		Collection<Trip> trips = tripService.getAllTrips();
+		Collection<Trip> trips = tripService.findAll();
 		if (trips != null) {
 			return new ResponseEntity<Collection<Trip>>(trips, HttpStatus.OK);
 		}
@@ -46,7 +46,7 @@ public class TripController {
 			method = RequestMethod.GET,
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Trip> retrieveTrip(@PathVariable Long id) {
-		Trip trip = tripService.getTrip(id);
+		Trip trip = tripService.find(id);
 		if (trip != null) {
 			return new ResponseEntity<Trip>(trip, HttpStatus.OK);
 		}
@@ -58,7 +58,7 @@ public class TripController {
 			consumes = MediaType.APPLICATION_JSON_VALUE,
 			produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Trip> updateTrip(@PathVariable BigInteger id, @RequestBody Trip trip) {
-		Trip updatedTrip = tripService.updateTrip(trip);
+		Trip updatedTrip = tripService.update(trip);
 		if (updatedTrip == null) {
 			return new ResponseEntity<Trip>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
@@ -68,7 +68,7 @@ public class TripController {
 	@RequestMapping(value = "/api/trip/{id}", 
 			method = RequestMethod.DELETE)
 	public ResponseEntity<Trip> deleteTrip(@PathVariable Long id) {
-		tripService.deleteTrip(id);
+		tripService.delete(id);
 		return new ResponseEntity<Trip>(HttpStatus.NO_CONTENT);
 	}
 	

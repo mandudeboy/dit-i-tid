@@ -35,7 +35,7 @@ public class TripBatchBean {
 		
 		
 		//TODO: Remove
-		Collection<Trip> trips = tripService.getAllTrips();
+		Collection<Trip> trips = tripService.findAll();
 		logger.info("There are {} trips in the database", trips.size());
 
 		logger.info("< cronJob");

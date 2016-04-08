@@ -21,13 +21,13 @@ public class TripServiceBean implements TripService {
 	private TripRepository tripRepository;
 
 	@Override
-	public Collection<Trip> getAllTrips() {
+	public Collection<Trip> findAll() {
 		return tripRepository.findAll();
 	}
 
 	@Override
 	@Cacheable(value = "trips", key = "#id")
-	public Trip getTrip(Long id) {
+	public Trip find(Long id) {
 		return tripRepository.findOne(id);
 	}
 
@@ -44,8 +44,8 @@ public class TripServiceBean implements TripService {
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	@CachePut(value = "trips", key = "#trip.id")
-	public Trip updateTrip(Trip trip) {
-		if (getTrip(trip.getId()) == null) {
+	public Trip update(Trip trip) {
+		if (find(trip.getId()) == null) {
 			return null;
 		}
 		return tripRepository.save(trip);
@@ -54,7 +54,7 @@ public class TripServiceBean implements TripService {
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	@CacheEvict(value = "trips", key = "#id")
-	public void deleteTrip(Long id) {
+	public void delete(Long id) {
 		tripRepository.delete(id);
 	}
 

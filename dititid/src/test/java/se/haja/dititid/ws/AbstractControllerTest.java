@@ -2,7 +2,6 @@ package se.haja.dititid.ws;
 
 import java.io.IOException;
 
-import org.junit.Before;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
@@ -14,6 +13,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import se.haja.dititid.ws.web.api.BaseController;
+
 @WebAppConfiguration
 public abstract class AbstractControllerTest extends AbstractTest {
 	
@@ -22,9 +23,12 @@ public abstract class AbstractControllerTest extends AbstractTest {
 	@Autowired
 	private WebApplicationContext webApplicationContext;
 	
-	@Before
 	public void setUp() {
 		mvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
+	}
+	
+	public void setUp(BaseController baseController) {
+		mvc = MockMvcBuilders.standaloneSetup(baseController).build();
 	}
 	
 	protected String mapToJson(Object obj) throws JsonProcessingException {

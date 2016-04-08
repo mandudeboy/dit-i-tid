@@ -32,14 +32,14 @@ public class TripServiceTest extends AbstractTest{
 	
 	@Test
 	public void testGetAllTrips() {
-		Collection<Trip> trips = service.getAllTrips();
+		Collection<Trip> trips = service.findAll();
 		assertNotNull(trips);
 		assertEquals(2, trips.size());
 	}
 	
 	@Test
 	public void testGetTrip() {
-		Trip trip = service.getTrip(1l);
+		Trip trip = service.find(1l);
 		assertNotNull(trip);
 	}
 	
